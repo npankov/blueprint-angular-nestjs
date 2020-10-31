@@ -6,13 +6,13 @@ L'objectif de cette application est de pouvoir gérer une liste simple de dépen
 
 ## Quick Start & Documentation
 
-`git checkout -b monnom` pour tirer une branche a son nom et ne pas polluer master
+`git checkout -b monnom` pour tirer une branche a son nom et ne pas polluer master, sinon forker le repository
 
 `npm i` pour installer les différentes dépendances à la racine du projet
 
-`ng serve api` pour démarrer l'api
+`npm run start` dans le dossier backend pour démarrer l'api
 
-`ng serve blueprint-angular` pour démarrer l'application angular
+`ng serve` dans le dossier frontend pour démarrer l'application angular
 
 
 ## Objectifs du tp
@@ -126,10 +126,20 @@ L'objectif de cette application est de pouvoir gérer une liste simple de dépen
 
   Calcul de la TVA : TVA = TTC / 100 * Taux TVA
   
-  Chaine de connexion de la base de données :
+  Chaine de connexion de la base de données : Dans le .env
+  
+  PgSql est utilisé comme bdd hebergé par Heroku, je vous fais confiance pour pas mettre en l'air la BDD.
+  
+  D'ailleurs de ce fait il faudra déclarer le ssl à true dans la création de vos pool de connexion afin de ne pas avoir de soucis avec.
+  
+  Documentation de pg: https://node-postgres.com/features/connecting
   
   Documentation de NestJS : https://docs.nestjs.com/
   
   Documentation d'Angular : https://angular.io/docs
   
   Documentation d'Ionic : https://ionicframework.com/docs
+  
+  Si y'a la moindre question ou le moindre soucis n'hésitez pas a me contacter à thomasguigard@gmail.com
+
+  De même si j'ai omis quelque chose ou que ça semble flou.
