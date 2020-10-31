@@ -20,17 +20,18 @@ L'objectif de cette application est de pouvoir gérer une liste simple de dépen
   - Pouvoir ajouter une dépense
   - Gérer une liste d'ajout / suppression / modification de dépenses
   - Trier la liste par date de la dépense
-  - Stocker en local la liste des dépenses
+  - Stocker en local la liste des dépenses (optionel)
   - Avoir une barre de recherche pour trier des dépenses via libellé
   - Pouvoir persister en base les dépenses
   - Pouvoir récupérer les dépenses de l'utilisateur à l'arrivée sur l'application
   - Alert l'utilisateur lors de différents évenements au sein de l'application via une snackbar / un toast
-  - Sauvegarder localement les dépenses afin de pouvoir les lire en mode hors ligne
-  - Supprimer les données locales si on le souhaite
+  - Sauvegarder localement les dépenses afin de pouvoir les lire en mode hors ligne (optionel)
+  - Supprimer les données locales si on le souhaite (optionel)
   - Récuperer les types de catégorie de référence depuis la base de donnée
   - Afficher le total d'une liste de dépenses
   - Avoir des dépenses ayant des devises différentes
   - Disposer d'un taux de TVA puisé dans une table de référence
+  - Documentation Swagger de l'api (optionel)
 
 ## MPD
 
