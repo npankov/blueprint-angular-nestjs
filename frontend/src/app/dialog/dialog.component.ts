@@ -8,7 +8,7 @@ import { DataService } from '../data.service';
   styleUrls: ['./dialog.component.scss']
 })
 export class DialogComponent {
-  blogPost = {
+  expenses = {
     title: '',
     prix: 0,
     category: '',
@@ -28,8 +28,8 @@ export class DialogComponent {
   }
 
   onSubmit(): void {
-    this.blogPost.position = this.dataService.dataLength();
-    this.event.emit({data: this.blogPost});
+    this.expenses.position = this.dataService.dataLength();
+    this.event.emit({data: this.expenses});
     this.dialogRef.close();
   }
 
