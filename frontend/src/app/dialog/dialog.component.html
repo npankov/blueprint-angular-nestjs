@@ -1,4 +1,4 @@
-<h1 mat-dialog-title>{{data}}</h1>
+<h1 mat-dialog-title>{{data.title}}</h1>
 
 <div mat-dialog-content>
   <form class="example-form" (ngSubmit)="onSubmit()">
@@ -11,11 +11,7 @@
     </mat-form-field>
 
     <mat-form-field>
-      <mat-select matInput placeholder="Depense Category" required [(ngModel)]="expenses.category" name="category">
-        <mat-option *ngFor="let cat of categories" [value]="cat.value">
-          {{ cat.viewValue }}
-        </mat-option>
-      </mat-select>
+      <input matInput placeholder="Depense Categorie" type="text" required [(ngModel)]="expenses.category" name="category">
     </mat-form-field>
 
     <button mat-raised-button type="submit" color="primary">Save</button>

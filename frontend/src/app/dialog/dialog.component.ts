@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Inject } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DataService } from '../data.service';
 
@@ -7,8 +7,8 @@ import { DataService } from '../data.service';
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss']
 })
-export class DialogComponent {
-  expenses = {
+export class DialogComponent implements OnInit {
+  public expenses = {
     title: '',
     prix: 0,
     category: '',
@@ -23,15 +23,20 @@ export class DialogComponent {
     public dataService: DataService
   ) {}
 
+  ngOnInit() {
+    if(this.data.expenses){
+      this.expenses = this.data.expenses;
+    }
+  }
+
   onNoClick(): void {
     this.dialogRef.close();
   }
 
   onSubmit(): void {
     this.expenses.position = this.dataService.dataLength();
-    this.event.emit({data: this.expenses});
+
+    this.event.emit({ data: this.expenses });
     this.dialogRef.close();
   }
-
-  categories = this.dataService.getCategories();
 }

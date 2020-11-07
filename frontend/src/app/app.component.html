@@ -1,56 +1,76 @@
-<mat-sidenav-container>
-  <mat-sidenav  #sidenav role="navigation">
-   <mat-nav-list>
-    <a mat-list-item
-        routerLink="/">
-      <mat-icon class="icon">home</mat-icon>
-        <span class="label">Home</span>
-    </a>
+<p>
+  <mat-toolbar color="primary">
+    <span>Gérer mes dépenses App</span>
+  </mat-toolbar>
+</p>
 
-    <a mat-list-item
-      routerLink="/dashboard">
-      <mat-icon class="icon">dashboard</mat-icon>
-      <span class="label">Dashboard</span>
-    </a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-     <div fxHide.gt-xs>
-       <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
+<div>
+
+  <br>
+
+    <div class="container">
+        <div class="container">
+          <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+              <div class="blocks">
+                  <button button="submit" mat-raised-button color="primary" (click)="openDialog()">
+                      <mat-icon>add</mat-icon> Ajouter une dépense
+                  </button>
+              </div>
+        </div>
     </div>
 
-     <div>
-       <a routerLink="/">
-          Mes depenses App
-       </a>
-     </div>
+    <br>
 
-     <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
-        <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-            <li>
-              <a
-                routerLink="/">
-                  <mat-icon class="icon">home</mat-icon>
-                  <span class="label">Home</span>
-              </a>
-            </li>
+    <div class="container">
+      <div fxLayout="row" fxLayoutAlign="center center" class="content">
+        <mat-card class="card" >
+          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+            <h3>Dernier depenses</h3>
+          </mat-card-title>
 
-            <li>
-                <a
-                  routerLink="/dashboard">
-                    <mat-icon class="icon">dashboard</mat-icon>
-                    <span class="label">Depenses</span>
-                </a>
-              </li>
-        </ul>
-     </div>
-    </mat-toolbar>
-    
-    <main>
-      <router-outlet></router-outlet>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+          <mat-card-content>
+              <div class="example-container mat-elevation-z8">
+                  <mat-table #table matSort [dataSource]="dataSource"  class="mat-elevation-z8">
+
+                    <ng-container matColumnDef="date_expenses">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Date Depense </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ element.date_expenses  | date: 'd/M/y' }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="title">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Nom </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ element.title }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="prix">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Prix </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ element.prix }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="category">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Categorie </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ element.category }} </mat-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="actions">
+                      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                      <mat-cell *matCellDef="let element">
+                        <a (click)="editExpense(element)" type="button">
+                          <mat-icon class="icon">edit</mat-icon>
+                        </a>
+                        <a (click)="deleteExpense(element.position)" type="button">
+                          <mat-icon class="icon">delete</mat-icon>
+                        </a>                  
+                      </mat-cell>
+                    </ng-container>
+
+                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                  </mat-table>
+                </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+</div>
