@@ -7,11 +7,15 @@
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Depense Prix" type="text" required [(ngModel)]="expenses.prix" name="prix">
+      <input matInput placeholder="Depense Prix" type="number" required [(ngModel)]="expenses.prix" name="prix">
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Depense Categorie" type="text" required [(ngModel)]="expenses.category" name="category">
+      <mat-select matInput placeholder="Depense Categorie" required [(ngModel)]="expenses.category" name="category">
+        <mat-option *ngFor="let cat of categories" [value]="cat.value">
+          {{ cat.viewValue }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
     <button mat-raised-button type="submit" color="primary">Save</button>
