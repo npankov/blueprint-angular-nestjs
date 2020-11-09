@@ -6,6 +6,7 @@ import {Observable} from 'rxjs/Observable';
 import {DialogComponent} from './dialog/dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {MatSort} from '@angular/material/sort';
+import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -25,8 +26,21 @@ export class AppComponent implements AfterViewInit {
   }
 
   deleteExpense(index): void {
-    this.dataService.deleteExpense(index);
-    // this.dataSource.data = this.dataService.ELEMENT_DATA;
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+      data: {
+        message: 'Supprimer ?',
+        buttonText: {
+          ok: 'Oui',
+          cancel: 'Non'
+        }
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((confirmed: boolean) => {
+      if (confirmed) {
+        this.dataService.deleteExpense(index);
+      }
+    });
   }
 
   editExpense(expenses: Expenses): void {

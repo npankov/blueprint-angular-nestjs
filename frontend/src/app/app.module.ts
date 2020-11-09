@@ -17,11 +17,13 @@ import { AppRouters } from './app.routes';
 import { DialogComponent } from './dialog/dialog.component';
 
 import { FormsModule } from '@angular/forms';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DialogComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,
