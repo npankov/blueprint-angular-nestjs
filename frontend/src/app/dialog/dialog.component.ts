@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-dialog',
@@ -16,16 +15,17 @@ export class DialogComponent implements OnInit {
     date_expenses: new Date()
   };
   public event: EventEmitter<any> = new EventEmitter();
+  public categories = this.data.categories;
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    public dataService: DataService
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {
-    if(this.data.expenses){
-      this.expenses = this.data.expenses;
+  ngOnInit(): void {
+    if (this.data.expenses) {
+      this.expenses = {...this.expenses, ...this.data.expenses};
     }
   }
 
@@ -34,9 +34,7 @@ export class DialogComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.expenses.position = this.dataService.dataLength();
-
-    this.event.emit({ data: this.expenses });
+    this.event.emit({data: this.expenses});
     this.dialogRef.close();
   }
 }
