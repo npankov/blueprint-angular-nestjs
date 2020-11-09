@@ -21,11 +21,12 @@
 
     <br>
 
+
     <div class="container">
       <div fxLayout="row" fxLayoutAlign="center center" class="content">
         <mat-card class="card">
-          <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-            <h3>Dernier depenses</h3>
+          <mat-card-title>
+            <p>Dernières dépenses</p>
           </mat-card-title>
 
           <mat-card-content>
@@ -45,9 +46,15 @@
                     </ng-container>
 
                     <ng-container matColumnDef="prix">
-                      <mat-header-cell *matHeaderCellDef mat-sort-header> Prix </mat-header-cell>
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> Prix TTC </mat-header-cell>
                       <mat-cell *matCellDef="let element"> {{ element.prix | currency:'EUR' }} </mat-cell>
                       <mat-footer-cell *matFooterCellDef> {{ getTotalCost() | currency:'EUR' }} </mat-footer-cell>
+                    </ng-container>
+
+                    <ng-container matColumnDef="tva">
+                      <mat-header-cell *matHeaderCellDef mat-sort-header> TVA 20 % </mat-header-cell>
+                      <mat-cell *matCellDef="let element"> {{ getTva(element)  | currency:'EUR' }} </mat-cell>
+                      <mat-footer-cell *matFooterCellDef></mat-footer-cell>
                     </ng-container>
 
                     <ng-container matColumnDef="category">

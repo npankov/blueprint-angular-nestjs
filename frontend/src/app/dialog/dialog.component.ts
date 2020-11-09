@@ -16,12 +16,10 @@ export class DialogComponent implements OnInit {
   };
   public event: EventEmitter<any> = new EventEmitter();
   public categories = this.data.categories;
-
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
-  ) {
-  }
+  ) {}
 
   ngOnInit(): void {
     if (this.data.expenses) {

@@ -5,9 +5,9 @@ import { BehaviorSubject, Observable } from 'rxjs';
 @Injectable()
 export class DataService {
   ELEMENT_DATA: Expenses[] = [
-    {position: 0, title: 'Voiture', category: 'Travail', date_expenses: new Date(), prix: 50.10},
-    {position: 1, title: 'Maison', category: 'Domicile', date_expenses: new Date(), prix: 10},
-    {position: 2, title: 'Drone', category: 'Divers', date_expenses: new Date(), prix: 10},
+    {position: 0, title: 'Voiture', category: 'Travail', date_expenses: new Date(), prix: 5000.10, tva: 0},
+    {position: 1, title: 'Maison', category: 'Domicile', date_expenses: new Date(), prix: 100000, tva: 0},
+    {position: 2, title: 'Drone', category: 'Divers', date_expenses: new Date(), prix: 500, tva: 0},
   ];
   categories = [
     {value: 'Travail', viewValue: 'Travail'},
@@ -28,7 +28,7 @@ export class DataService {
     return this.expensesSubject.asObservable();
   }
 
-  getCategories() {
+  getCategories(): any {
     return this.categories;
   }
 
@@ -86,3 +86,4 @@ export class DataService {
 function compare(a: number | string | Date, b: number | string | Date, isAsc: boolean) {
   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
 }
+

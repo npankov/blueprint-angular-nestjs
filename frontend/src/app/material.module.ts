@@ -10,6 +10,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatSelectModule} from '@angular/material/select';
 import {MatSortModule} from '@angular/material/sort';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import {MatSortModule} from '@angular/material/sort';
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   exports: [
     MatSidenavModule,
@@ -37,7 +41,9 @@ import {MatSortModule} from '@angular/material/sort';
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
-    MatSortModule
+    MatSortModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ]
 })
 export class MaterialModule {

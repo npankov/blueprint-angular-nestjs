@@ -1,12 +1,12 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {DataService} from './data.service';
-import {Expenses} from './Expenses';
-import {DataSource} from '@angular/cdk/table';
-import {Observable} from 'rxjs/Observable';
-import {DialogComponent} from './dialog/dialog.component';
-import {MatDialog} from '@angular/material/dialog';
-import {MatSort} from '@angular/material/sort';
-import {ConfirmationDialogComponent} from './confirmation-dialog/confirmation-dialog.component';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { DataService } from './data.service';
+import { Expenses } from './Expenses';
+import { DataSource } from '@angular/cdk/table';
+import { Observable } from 'rxjs/Observable';
+import { DialogComponent } from './dialog/dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSort } from '@angular/material/sort';
+import { ConfirmationDialogComponent } from './confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ export class AppComponent implements AfterViewInit {
   constructor(private dataService: DataService, public dialog: MatDialog) {
   }
 
-  displayedColumns = ['date_expenses', 'title', 'prix', 'category', 'actions'];
+  displayedColumns = ['date_expenses', 'title', 'prix', 'tva', 'category', 'actions'];
   dataSource = new ExpenseDataSource(this.dataService);
   @ViewChild(MatSort, {static: false}) sort: MatSort;
 
@@ -26,7 +26,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   deleteExpense(index): void {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent,{
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         message: 'Supprimer ?',
         buttonText: {
@@ -72,8 +72,13 @@ export class AppComponent implements AfterViewInit {
     });
   }
 
-  getTotalCost() {
-    return this.dataService.ELEMENT_DATA.map(t => t.prix).reduce((acc, value) => acc + value, 0);
+  getTotalCost(): number {
+      return this.dataService.ELEMENT_DATA.map(t => t.prix).reduce((acc, value) => acc + value, 0);
+  }
+
+  getTva(data): number {
+    const expense = this.dataService.ELEMENT_DATA.find((e) => e.position === data.position);
+    return (expense.prix / 100 * 20);
   }
 }
 
